@@ -8,7 +8,7 @@ The master branch contains only bare-bones application, and branches add modules
 * **nodemon** - restarts server on server or gulp file changes
 * **heroku** - add hosting, building and instructions for heroku
 
-### Upcoming features, soon(ish)
+### Upcoming features
 1. Add Angular to base
 1. Add '''Livereload'''
 1. Add '''Jade'''
@@ -19,7 +19,10 @@ The master branch contains only bare-bones application, and branches add modules
 1. Improve base error handling
 1. Add Amazon Web Services Simple Email Service
 1. Add Amazon Web Services File upload
-1. Add interactive configuration and self-checking 
+
+### Someday/Maybe features
+1. Interactive configuration and self-checking 
+2. Scaffolding with Slush  http://joakimbeng.eu01.aws.af.cm/slush-replacing-yeoman-with-gulp/
 
 # Usage
 For example to get angular-express-gulp-nodemon seed:
