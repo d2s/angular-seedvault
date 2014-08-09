@@ -3,16 +3,18 @@
 This repository is supposed to be composable seed store for Express + Gulp + Angular projects.
 The master branch contains only bare-bones application, and branches add modules like .jade templates, Amazon web services file uploading or New relic monitoring. 
 
-Current features include
+###Current features include
 
 * **nodemon** - restarts server on server or gulp file changes
 * **heroku** - add hosting, building and instructions for heroku
 
-# Upcoming features, soon(ish)
+### Upcoming features, soon(ish)
 1. Add Angular to base
 1. Add '''Livereload'''
 1. Add '''Jade'''
 1. Add '''Stylus'''
+1. Add '''bower''''
+1. Add '''Browserify''' 
 1. Improve base error handling
 1. Add Amazon Web Services Simple Email Service
 1. Add Amazon Web Services File upload
