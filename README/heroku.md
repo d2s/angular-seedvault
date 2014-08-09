@@ -8,3 +8,6 @@
 1. 'git push heroku'
 
 You can also have multiple heroku apps, for Development, production and staging
+
+# Simulating heroku locally
+1. See http://blog.daviddollar.org/2011/05/06/introducing-foreman.html
