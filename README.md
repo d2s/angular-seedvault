@@ -45,3 +45,10 @@ You should be able to merge the feature branches without conflicts.
 # Contributions are welcome
 Anyone can help make this project better. 
 
+# Related links
+Following links / projects have influenced this project
+* https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/mobilebasic?pli=1
+* https://github.com/pilwon/ultimate-seed
+* https://github.com/angular/angular-seed
+* https://github.com/henyojess/generator-gulp-ng
+* https://github.com/h5bp/html5-boilerplate/
