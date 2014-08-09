@@ -7,7 +7,7 @@ requireDir('./gulp_modules', { recurse: true });
 // By default, ompile assets and keep server alive
 gulp.task('default', ['serve']);
 
-gulp.task('serve', ['build', 'serve:keepalive']);
+gulp.task('serve', ['build', 'serve:once']);
 
 // Build on heroku
 gulp.task('heroku:production', ['build']);
