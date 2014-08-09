@@ -28,7 +28,7 @@ For example to get angular-express-gulp-nodemon seed:
 You should be able to merge the feature branches without conflicts.
 
 # Upcoming features
-1. Detach heroku hosting from main branch to separate branch
+1. Add Angular to base
 1. Add '''Livereload'''
 1. Add '''Jade'''
 1. Add '''Stylus'''
