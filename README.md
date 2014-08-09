@@ -6,7 +6,7 @@ The master branch contains only bare-bones application, and branches add modules
 Current features include
 
 * **nodemon** - restarts server on server or gulp file changes
-* **heroku** - add support heroku hosting and instructions 
+* **heroku** - add hosting, building and instructions for heroku
 * **nodemon** - restarts server on server or gulp file changes
 
 # Usage
