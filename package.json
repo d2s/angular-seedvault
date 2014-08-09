@@ -1,6 +1,7 @@
 {
   "name": "angular-seeds",
   "version": "0.0.1",
+  "private": true,
   "description": "Composable gulp+angular+express seed",
   "main": "index.js",
   "engines": {
