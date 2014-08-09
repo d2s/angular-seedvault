@@ -7,7 +7,15 @@ Current features include
 
 * **nodemon** - restarts server on server or gulp file changes
 * **heroku** - add hosting, building and instructions for heroku
-* **nodemon** - restarts server on server or gulp file changes
+
+# Upcoming features, soon(ish)
+1. Add Angular to base
+1. Add '''Livereload'''
+1. Add '''Jade'''
+1. Add '''Stylus'''
+1. Improve base error handling
+1. Add Amazon Web Services Simple Email Service
+1. Add Amazon Web Services File upload
 
 # Usage
 For example to get angular-express-gulp-nodemon seed:
@@ -27,14 +35,6 @@ For example to get angular-express-gulp-nodemon seed:
 
 You should be able to merge the feature branches without conflicts.
 
-# Upcoming features
-1. Add Angular to base
-1. Add '''Livereload'''
-1. Add '''Jade'''
-1. Add '''Stylus'''
-1. Improve base error handling
-1. Add Amazon Web Services Simple Email Service
-1. Add Amazon Web Services File upload
 
 # Contributions are welcome
 Anyone can help make this project better. 
