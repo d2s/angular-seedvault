@@ -6,7 +6,7 @@ The master branch contains only bare-bones application, and branches add modules
 Current features include
 
 * **nodemon** - restarts server on server or gulp file changes
-* **heroku** - add support heroku hosting and instructions 
+* **heroku** - [add support heroku hosting and instructions](https://github.com/jkarttunen/angular-seedvault/blob/master/README/heroku.md)
 * **nodemon** - restarts server on server or gulp file changes
 
 # Usage
