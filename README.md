@@ -19,6 +19,7 @@ The master branch contains only bare-bones application, and branches add modules
 1. Improve base error handling
 1. Add Amazon Web Services Simple Email Service
 1. Add Amazon Web Services File upload
+1. Add interactive configuration and self-checking 
 
 # Usage
 For example to get angular-express-gulp-nodemon seed:
