@@ -13,6 +13,7 @@ The master branch contains only bare-bones application, and branches add modules
 1. Add '''Livereload'''
 1. Add '''Jade'''
 1. Add '''Stylus'''
+1. Add '''AngularFire'''
 1. Add '''bower''''
 1. Add '''Browserify''' 
 1. Improve base error handling
