@@ -4,17 +4,18 @@ This repository is supposed to be composable seed store for Express + Gulp + Ang
 The master branch contains only bare-bones application, and branches add modules like .jade templates, Amazon web services file uploading or New relic monitoring. 
 
 ###Current features include
-
+* master branch includes Angular, Express, Gulp build system, bower, and it picks bower main files automatically to the build.
 * **nodemon** - restarts server on server or gulp file changes
 * **heroku** - [add support heroku hosting and instructions](https://github.com/jkarttunen/angular-seedvault/blob/master/README/heroku.md)
 
 ### Upcoming features
-1. Add Angular to base
+1. Check that bower main files load css files too, and won't break
+1. Add 'angular-route'
+1. Add 'ui-router'
 1. Add `Livereload`
 1. Add `Jade`
 1. Add `Stylus`
 1. Add `AngularFire`
-1. Add `Bower`
 1. Add `Browserify` 
 1. Improve base error handling
 1. Add Amazon Web Services Simple Email Service
