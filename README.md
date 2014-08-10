@@ -31,7 +31,7 @@ For example to get angular-express-gulp-nodemon seed:
 ### 1. Clone angular-seedvault
 - `git clone https://github.com/jkarttunen/angular-seedvault`
 
-### 2. Add features
+### 2. Merge feature branches
 - `git branch -a` // list branches
 - `git merge origin/nodemon`  // add nodemon
 - `git merge origin/jade`     // add jade (TBD)
@@ -40,6 +40,9 @@ For example to get angular-express-gulp-nodemon seed:
 ### 3. Detach from angular-seedvault 
 - `git remote remove origin`  // Detach from angular-seedvault
 - `git remote add origin https://github.com/user/repo.git`  //Add to my repo
+
+### 4. Add bower or NPM modules
+- e.g. `bower install angular-ui-router --save` 
 
 You should be able to merge the feature branches without conflicts.
 
