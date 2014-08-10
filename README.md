@@ -52,3 +52,13 @@ Following links / projects have influenced this project
 * https://github.com/angular/angular-seed
 * https://github.com/henyojess/generator-gulp-ng
 * https://github.com/h5bp/html5-boilerplate/
+
+# Installing dependencies
+- install [Node.js](http://nodejs.org/)
+- install [npm](https://www.npmjs.org/doc/README.html)
+- install [Bower](https://github.com/bower/bower) `npm install -g bower`
+- install other npm packages `npm install`
+  - [Express.js](http://expressjs.com/) 
+  - [gulp](http://gulpjs.com/) 
+- install Bower packages such as [Angular](https://angularjs.org/)
+  - bower install`

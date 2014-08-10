@@ -1,6 +1,6 @@
 # Heroku Branch
 
-## Prerequisites
+## Configuration
 1. Install **Heroku toolbelt** https://toolbelt.herokuapp.com/
 1. Configure heroku app
     * Create new one with `heroku create my-herokuapp-name --buildpack https://github.com/timdp/heroku-buildpack-nodejs-gulp` 
