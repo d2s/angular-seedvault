@@ -2,16 +2,20 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),  // Concatenates files together
     rimraf = require('rimraf'),       // Cleans folders
+    mainBowerFiles = require('main-bower-files'),
 
     DEST = './dist',
-    SOURCE = './client';
+    SOURCE = './client',
+    EXCLUDE = '!./client/bower_components';
 
-var FILES_SCRIPTS_APP = [ SOURCE + '/scripts/**/*.js', SOURCE + '/views/**/*.js'],
-    FILES_SCRIPTS_VENDOR = [ SOURCE + '//vendor/angular/angular.js'],
-    FILES_STYLES = [ SOURCE + '/styles/**/*.js', SOURCE + '/views/**/*.js'],
-    FILES_ASSETS = [ SOURCE + '/assets/**/*.*', SOURCE + '/views/**/*.*'],
-    FILES_HTML = [ SOURCE + '/.views/**/*.html'];
+var FILES_SCRIPTS_APP = [ SOURCE + '/**/*.js', EXCLUDE],
+    FILES_STYLES = [ SOURCE + '/**/*.css', EXCLUDE],
+    FILES_ASSETS = [ SOURCE + '/**/assets/*.*', EXCLUDE],
+    FILES_HTML = [ SOURCE + '/**/*.html', EXCLUDE];
 
+
+console.log(mainBowerFiles());
+console.log(process.env.NODE_ENV);
 
 gulp.task('clean:dist', function(cb) {
     rimraf(DEST, cb);
@@ -21,13 +25,13 @@ gulp.task('clean:dist', function(cb) {
 gulp.task('build:scripts:app', ['clean:dist'], function() {
   return gulp.src(FILES_SCRIPTS_APP)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest(DEST + '/scripts'));
+    .pipe(gulp.dest(DEST));
 });
 
 gulp.task('build:scripts:vendor', ['clean:dist'], function() {
-  return gulp.src(FILES_SCRIPTS_VENDOR)
+  return gulp.src(mainBowerFiles(/* options */))
     .pipe(concat('vendor.js'))
-    .pipe(gulp.dest(DEST + '/scripts'));
+    .pipe(gulp.dest(DEST));
 });
 
 gulp.task('build:scripts', ['build:scripts:vendor', 'build:scripts:app']);
@@ -35,12 +39,12 @@ gulp.task('build:scripts', ['build:scripts:vendor', 'build:scripts:app']);
 
 gulp.task('build:styles', ['clean:dist'], function() {
   return gulp.src(FILES_STYLES)
-    .pipe(gulp.dest(DEST + '/styles'));
+    .pipe(gulp.dest(DEST));
 });
 
 gulp.task('build:assets', ['clean:dist'], function() {
   return gulp.src(FILES_ASSETS)
-    .pipe(gulp.dest(DEST + '/assets'));
+    .pipe(gulp.dest(DEST));
 });
 
 gulp.task('build:html', ['clean:dist'], function() {

@@ -1,6 +1,7 @@
 {
-  "name": "angular-seeds",
+  "name": "angular-seedvault",
   "version": "0.0.1",
+  "private": true,
   "description": "Composable gulp+angular+express seed",
   "main": "index.js",
   "engines": {
@@ -8,8 +9,8 @@
     "npm": "~1.3.17"
   },
   "repository": {
-  "type": "git",
-  "url": "git://github.com/jkarttunen/angular-seedvault.git"
+    "type": "git",
+    "url": "git://github.com/jkarttunen/angular-seedvault.git"
   },
   "author": "",
   "license": "MIT",
@@ -20,6 +21,7 @@
     "express": "~4.8.2",
     "bower": "~1.3.9",
     "require-dir": "~0.1.0",
-    "gulp-run": "~1.6.3"
+    "gulp-run": "~1.6.3",
+    "main-bower-files": "~1.0.2"
   }
 }
