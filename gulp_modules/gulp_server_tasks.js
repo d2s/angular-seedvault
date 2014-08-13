@@ -7,6 +7,5 @@ var gulp = require('gulp'),
 
 gulp.task('serve:once', function () {
   run('node '+ EXPRESS_APP).exec();
-  console.log('Started');
 });
 
