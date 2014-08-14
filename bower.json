@@ -1,0 +1,11 @@
+{
+  "name": "angular-seedvault",
+  "description": "Composable gulp+angular+express seed",
+  "version": "0.0.1",
+  "homepage": "git://github.com/jkarttunen/angular-seedvault.git",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x"
+  }
+}

@@ -24,6 +24,5 @@ gulp.task('serve:keepalive', function () {
 
 gulp.task('serve:once', function () {
   run('node '+ EXPRESS_APP).exec();
-  console.log('Started');
 });
 

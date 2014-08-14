@@ -1,1 +1,2 @@
-// Editing this does not trigger nodemon change
+
+angular.module('MyApp', []);
