@@ -18,7 +18,7 @@ module.exports.paths = {
         images    : ['client/**/*.{png,svg,jpg,jpeg,gif}', '!client/bower_components/**/*.{png,svg,jpg,jpeg,gif}'],
         dist      : 'dist/',
     // Server paths
-        restart   : ['server', 'gulp_tasks',  'gulpfile.js'],
+        restart   : ['server', 'gulp_modules',  'gulpfile.js'],
         expressApp : 'server/app.js'
     };
 
