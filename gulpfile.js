@@ -7,7 +7,7 @@ var gulp = require('gulp'),
  *  'gulp serve:once to start server without automatic restarting'
  *  edit ./gulp_tasks/config.js to configure asset pipeline                                                     */
 
-requireDir('./gulp_tasks', { recurse: true });
+requireDir('./gulp_modules', { recurse: true });
 
 // Watch builds assets on start
 // serve:keepalive rebuilds assets on server restart

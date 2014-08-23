@@ -6,17 +6,14 @@ The master branch contains only bare-bones application, and branches add modules
 
 ### Current features include
 * master branch includes Angular, Express, Gulp build system, Bower, and it picks Bower main files automatically to the build.
-* **nodemon** - restarts server on server or Gulp file changes
-* **heroku** - [add support heroku hosting and instructions](https://github.com/jkarttunen/angular-seedvault/blob/master/README/heroku.md)
+* Fast develpment environment. Restart server on server file change, reload browser on asset change
+* Heroku deployment with 'git push heroku'
 
 
 ### Upcoming features
 1. Check that Bower main files load CSS files too, and won't break.
 1. Add 'angular-route'
 1. Add 'ui-router'
-1. Add `Livereload`
-1. Add `Jade`
-1. Add `Stylus`
 1. Add `AngularFire`
 1. Add `Browserify` 
 1. Improve base error handling
