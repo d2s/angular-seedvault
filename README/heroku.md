@@ -1,4 +1,4 @@
-# Heroku Branch
+# Heroku
 
 ## Configuration
 1. Install **Heroku toolbelt** https://toolbelt.herokuapp.com/

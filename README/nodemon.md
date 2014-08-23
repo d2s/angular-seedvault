@@ -1,4 +1,4 @@
-# Nodemon Branch
+# Nodemon 
 
 ## Purpose
 Nodemon is used to keep the server process alive in development environment, and to reload the server when Gulp file or files in server/folder are updated.

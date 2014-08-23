@@ -1,111 +1,118 @@
+var gulp = require('gulp'),                      // build system
+    livereload = require('gulp-livereload'),     // gulp pipes for livereload
+    lazypipe = require('lazypipe'),              // better gulp pipe reusability
+    embedlr = require('gulp-embedlr'),           // livereload browser-snippet injector
+    jade = require('gulp-jade'),                 // compile jade to html
+    stylus = require('gulp-stylus'),             // compile styl to css
+    rimraf = require('rimraf'),                  // clean dist / folder
+    plumber = require('gulp-plumber'),           // keeps pipes working after error events
+    gutil = require('gulp-util'),                // Gulp utils. Used here to beep on failed jade & sass compilation
+    wait = require('gulp-wait'),                 // Sometimes .pipe(wait(100)) might be neede before livereload task
+    gulpif = require('gulp-if'),
+    config = require('./config.js');
 
-var gulp = require('gulp'),
-    watch = require('gulp-watch'),    // Watch changes and new files
-    livereload = require('gulp-livereload'), // reload server on changes
-    concat = require('gulp-concat'),  // Concatenates files together
-    rimraf = require('rimraf'),       // Cleans folders
-    mainBowerFiles = require('main-bower-files'),
+var paths = config.paths;
 
-    DEST = './dist',
-    SOURCE = './client',
-    EXCLUDE = '!./client/bower_components/';
+//var liveReloadServer = tinylr();
 
-var FILES_SCRIPTS_APP = [ SOURCE + '/**/*.js', EXCLUDE, EXCLUDE+'/**'],
-    FILES_STYLES = [ SOURCE + '/**/*.css', EXCLUDE, EXCLUDE+'/**'],
-    FILES_ASSETS = [ SOURCE + '/**/assets/*.*', EXCLUDE, EXCLUDE+'/**'],
-    FILES_HTML = [ SOURCE + '/**/*.html', EXCLUDE, EXCLUDE+'/**'],
-    BOWER_COMPONENTS = './client/bower_components/**';
+// wait 10 milliseconds before reloading. If Livereload keeps failing, try increasing this
+var refreshBrowser = lazypipe()
+                        .pipe(wait, 10)
+                        .pipe(livereload);
 
 
-gulp.task('clean:dist', function(cb) {
-    rimraf(DEST, cb);
+var onError = function (err) {
+  gutil.beep();
+  console.log(err);
+};
+
+gulp.task('build', ['clean'], function () {
+    gulp.start('build:assets');
 });
 
-// Starts once clean:dist has been finished
-gulp.task('build:scripts:app', function() {
-  return gulp.src(FILES_SCRIPTS_APP)
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest(DEST))
-    .pipe(livereload())
-    ;
+gulp.task('clean', function (cb) {
+    rimraf('./dist', cb);
 });
 
-gulp.task('watch', function() {
-  gulp.watch(FILES_SCRIPTS_APP, ['build:scripts:app']);
-  gulp.watch(BOWER_COMPONENTS, ['build:scripts:vendor']);
-  gulp.watch(FILES_STYLES, ['build:styles']);
-  gulp.watch(FILES_HTML, ['build:html']);
+gulp.task('build:assets', ['build:jade',
+                           'build:html',
+                           'build:css',
+                           'build:styl',
+                           'build:scripts',
+                           'build:json',
+                           'build:scripts:bower',
+                           'build:fonts',
+                           'build:images']);
+
+
+gulp.task('build:styl', function () {
+    return gulp.src(paths.styl)
+        .pipe(plumber({errorHandler: onError}))
+        .pipe(stylus())
+        .pipe(gulp.dest(paths.dist))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
-// watch({glob: FILES_SCRIPTS_APP}, function() {
-//     gulp.start('build:scripts:vendor');
-// });
-
-
-gulp.task('build:scripts:vendor', function() {
-  return gulp.src(mainBowerFiles(/* options */))
-    .pipe(concat('vendor.js'))
-    .pipe(gulp.dest(DEST))
-    .pipe(livereload())
-    ;
+gulp.task('build:css', function () {
+    return gulp.src(paths.css)
+        .pipe(plumber({errorHandler: onError}))
+        .pipe(gulp.dest(paths.dist))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
-// watch({glob: BOWER_COMPONENTS}, function() {
-//     gulp.start('build:scripts:vendor');
-// });
 
-
-gulp.task('build:scripts', ['build:scripts:vendor', 'build:scripts:app']);
-
-
-gulp.task('build:styles', function() {
-  return gulp.src(FILES_STYLES)
-    .pipe(gulp.dest(DEST))
-    .pipe(livereload())
-    ;
+gulp.task('build:json', function() {
+    gulp.src(paths.json, {base: 'client/scripts'})
+        .pipe(gulp.dest('dist/scripts/'))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
-// watch({glob: FILES_STYLES}, function() {
-//     gulp.start('build:styles')
-//     ;
-// });
-
-
-
-gulp.task('build:assets', function() {
-  return gulp.src(FILES_ASSETS)
-    .pipe(gulp.dest(DEST))
-    .pipe(livereload())
-    ;
+gulp.task('build:scripts:bower', function() {
+    gulp.src(paths.bowerJs, {base: 'client/bower_components'})
+        .pipe(gulp.dest('dist/bower_components/'))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
-// watch({glob: FILES_ASSETS}, function() {
-//     gulp.start('build:assets');
-// });
-
-
-gulp.task('build:html', function() {
-  return gulp.src(FILES_HTML)
-    .pipe(gulp.dest(DEST))
-    .pipe(livereload())
-    ;
+gulp.task('build:scripts', function () {
+    return gulp.src(paths.js)
+        .pipe(gulp.dest(paths.dist))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
-// watch({glob: FILES_HTML}, function() {
-//     gulp.start('build:html');
-// });
+gulp.task('build:react', function () {
+    return gulp.src(paths.react)
+        .pipe(plumber({errorHandler: onError}))
+        .pipe(react())
+        .pipe(gulp.dest('dist'))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
+});
+
+gulp.task('build:jade', function () {
+    return gulp.src(paths.jade)
+        .pipe(plumber({errorHandler: onError}))
+        .pipe(jade({ pretty: true }))
+        .pipe(gulpif(config.LIVERELOAD_ENV, embedlr()))
+        .pipe(gulp.dest('dist'))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
+});
+
+gulp.task('build:fonts', function () {
+    return gulp.src(paths.fonts)
+        .pipe(gulp.dest('dist'))
+});
 
 
-// Compile all assets to /dist
-gulp.task('build:dist', [
-  'build:scripts',
-  'build:html',
-  'build:styles',
-  'build:assets'
-]);
+gulp.task('build:html', function () {
+    return gulp.src(paths.html)
+        .pipe(gulpif(config.LIVERELOAD_ENV, embedlr()))
+        .pipe(gulp.dest('dist'))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
+});
 
-gulp.task('build', ['build:dist'], function() {
-  gulp.run('watch');
+gulp.task('build:images', function () {
+    return gulp.src(paths.images)
+        .pipe(gulp.dest('dist'))
+        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
 
