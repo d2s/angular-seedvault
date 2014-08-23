@@ -9,7 +9,7 @@ var gulp = require('gulp'),                      // build system
     gutil = require('gulp-util'),                // Gulp utils. Used here to beep on failed jade & sass compilation
     wait = require('gulp-wait'),                 // Sometimes .pipe(wait(100)) might be neede before livereload task
     gulpif = require('gulp-if'),
-    config = require('./config.js');
+    config = require('./gulp_config.js');
 
 var paths = config.paths;
 

@@ -25,7 +25,7 @@ var errorHandler = function(err, req, res, next) {
 // view engine setup
 app.set('views', path.join(__dirname, 'dist'));
 app.set('view engine', 'jade');
-app.use(favicon());
+//app.use(favicon());
 app.set('port', port);
 
 // Authentication on heroku

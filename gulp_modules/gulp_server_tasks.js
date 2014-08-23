@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),               // Keep server alive and restart it on file change
     watch = require('gulp-watch'),            // watch file changes and new files
     livereload = require('gulp-livereload'),
-    config = require('./config.js');
+    config = require('./gulp_config.js');
 
 
 /*
@@ -16,6 +16,7 @@ var gulp = require('gulp'),
         livereload();
     }, 2000);
  }
+
 
 gulp.task('serve:keepalive', function () {
     nodemon({
