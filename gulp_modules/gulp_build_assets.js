@@ -1,22 +1,24 @@
-var gulp = require('gulp'),                      // build system
-    livereload = require('gulp-livereload'),     // gulp pipes for livereload
-    lazypipe = require('lazypipe'),              // better gulp pipe reusability
-    embedlr = require('gulp-embedlr'),           // livereload browser-snippet injector
-    jade = require('gulp-jade'),                 // compile jade to html
-    stylus = require('gulp-stylus'),             // compile styl to css
-    rimraf = require('rimraf'),                  // clean dist / folder
-    plumber = require('gulp-plumber'),           // keeps pipes working after error events
-    gutil = require('gulp-util'),                // Gulp utils. Used here to beep on failed jade & sass compilation
-    wait = require('gulp-wait'),                 // Sometimes .pipe(wait(100)) might be neede before livereload task
+var gulp = require('gulp'),                       // build system
+    livereload = require('gulp-livereload'),      // gulp pipes for livereload
+    lazypipe = require('lazypipe'),               // better gulp pipe reusability
+    embedlr = require('gulp-embedlr'),            // livereload browser-snippet injector
+    jade = require('gulp-jade'),                  // compile jade to html
+    stylus = require('gulp-stylus'),              // compile styl to css
+    rimraf = require('rimraf'),                   // clean dist / folder
+    plumber = require('gulp-plumber'),            // keeps pipes working after error events
+    gutil = require('gulp-util'),                 // Gulp utils. Used here to beep on failed jade & sass compilation
+    wait = require('gulp-wait'),                  // Sometimes .pipe(wait(100)) might be neede before livereload task
     gulpif = require('gulp-if'),
-    config = require('./gulp_config.js');
+    config = require('./gulp_config.js'),
+    gulpBowerFiles = require('gulp-bower-files');
+    concat = require('gulp-concat'),  // Concatenates files together
 
-var paths = config.paths;
+    paths = config.paths,
 
 //var liveReloadServer = tinylr();
 
 // wait 10 milliseconds before reloading. If Livereload keeps failing, try increasing this
-var refreshBrowser = lazypipe()
+    refreshBrowser = lazypipe()
                         .pipe(wait, 10)
                         .pipe(livereload);
 
@@ -40,8 +42,8 @@ gulp.task('build:assets', ['build:jade',
                            'build:styl',
                            'build:scripts',
                            'build:json',
-                           'build:scripts:bower',
                            'build:fonts',
+                           'build:bower',
                            'build:images']);
 
 
@@ -67,15 +69,16 @@ gulp.task('build:json', function() {
         .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
-gulp.task('build:scripts:bower', function() {
-    gulp.src(paths.bowerJs, {base: 'client/bower_components'})
-        .pipe(gulp.dest('dist/bower_components/'))
-        .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
+gulp.task("build:bower", function(){
+    gulpBowerFiles()
+      .pipe(concat('vendor.js'))
+      .pipe(gulp.dest("dist/scripts/"));
 });
 
 gulp.task('build:scripts', function () {
     return gulp.src(paths.js)
-        .pipe(gulp.dest(paths.dist))
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(paths.dist+'scripts/'))
         .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
 
@@ -108,6 +111,7 @@ gulp.task('build:html', function () {
         .pipe(gulp.dest('dist'))
         .pipe(gulpif(config.LIVERELOAD_ENV, refreshBrowser()));
 });
+
 
 gulp.task('build:images', function () {
     return gulp.src(paths.images)

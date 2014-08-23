@@ -1,4 +1,4 @@
-    _ = require('underscore');
+ var  _ = require('underscore');
 
     /* CONFIGURAION
      * Feel free to edit these to suit your asset pipeline
@@ -15,7 +15,6 @@ module.exports.paths = {
         jade      : ['client/**/*.jade', '!client/bower_components/**/*.jade'],
         fonts     : ['client/**/*.{eot,ttf,otf,cff,afm,lwfn,ffil,fon,pfm,pfb,woff,std,pro,xsf}', '!client/bower_components/**/*.{otf,ttf,woff,eot}'],
         js        : ['client/**/*.js', '!client/bower_components/**/*.js'],
-        bowerJs   : 'client/bower_components/**/*.js',
         images    : ['client/**/*.{png,svg,jpg,jpeg,gif}', '!client/bower_components/**/*.{png,svg,jpg,jpeg,gif}'],
         dist      : 'dist/',
     // Server paths

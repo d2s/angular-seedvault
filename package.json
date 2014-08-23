@@ -45,7 +45,9 @@
     "lazypipe": "~0.2.2",
     "require-dir": "~0.1.0",
     "gulp-run": "~1.6.4",
-    "gulp-nodemon": "~1.0.4"
+    "gulp-nodemon": "~1.0.4",
+    "gulp-concat": "~2.3.4",
+    "gulp-bower-files": "~0.2.7"
   },
   "scripts": {
     "postinstall": "bower install"
